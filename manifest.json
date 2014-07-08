@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+
+  "name": "America F Yeah",
+  "description": "An Extension for people who like America",
+  "version": "1.0",
+
+  // All urls, & tabs
+  "permissions": [
+    "https://*/*",
+    "http://*/*",
+    "tabs"
+  ],
+
+  "background": {
+    "scripts": [ "./js/init.js" ],
+    "persistent": false
+  }
+}
