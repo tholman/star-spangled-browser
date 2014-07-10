@@ -5,11 +5,39 @@
 
 
 
-var Americanizer = (function() {
+var wordGifSoundAwesomeizer = (function() {
 
   'use strict';
   var body;
   var container;
+
+  var gifLocations   = './assets/gif/';
+  var soundLocations = './assets/mp3/';
+
+
+  var gifSets = {
+  	'american': [
+  		'hidden-gun.gif',
+  		'hulk-hogan.gif',
+  		'freedom.gif',
+  		'guns.gif'
+  	]
+  }
+
+  var soundSets = {
+  	'american': [
+  		'highway-to-the-dangerzone.mp3',
+  		'star-spangled-banner.mp3',
+  		'born-in-the-usa.mp3'
+  	]
+  }
+
+  // Each word in the words set here, will assign actions to given gif & sound
+  // sets, and then be randomized between each hover. 
+  // -- Words should be all lower case!
+  var wordAssignments = {
+  	'american': [ 'america', 'american', 'freedom' ]
+  }
     
   /* -------------------------
   /*          UTILS
@@ -42,14 +70,13 @@ var Americanizer = (function() {
   // Initialize
   function init() {
 
-  	var substring= 'trali';
+  	var substring= 'australi';
 	findPlainText(document.body, substring, function(node, index) {
 	    node.splitText(index+substring.length);
 	    var span= document.createElement('span');
 	    span.appendChild(node.splitText(index));
 	    node.parentNode.insertBefore(span, node.nextSibling);
 	});
-
   }
 
 function findPlainText(element, substring, callback) {
@@ -60,7 +87,7 @@ function findPlainText(element, substring, callback) {
         } else if (child.nodeType===3) {
             var index = child.data.length;
             while (true) {
-                index = child.data.lastIndexOf(substring, index);
+                index = child.data.toLowerCase().lastIndexOf(substring, index);
                 if (index===-1)
                     break;
                 callback.call(window, child, index)
@@ -74,7 +101,7 @@ function findPlainText(element, substring, callback) {
 
     // Let the fun begin
     element.addEventListener( 'mouseover',    function() { startLovingAmerica(); }, false );
-    element.addEventListener( 'mouseout',     function() { stopParting();   }, false );
+    element.addEventListener( 'mouseout',     function() { sadlyStopPartying();   }, false );
   }
 
   // Create and cache the gif container.
@@ -104,7 +131,7 @@ function findPlainText(element, substring, callback) {
   }
 
   // Hide the container
-  function stopPartying() {
+  function sadlyStopPartying() {
     container.style[ 'display' ] = 'none';
     container.style[ 'backgroundImage' ] = '';
   }
@@ -124,4 +151,4 @@ function findPlainText(element, substring, callback) {
 
 })();
 
-Americanizer();
+wordGifSoundAwesomeizer();

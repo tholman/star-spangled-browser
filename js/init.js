@@ -9,6 +9,6 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab){
         return;
     }
 
-    chrome.tabs.executeScript(null, {"file": "./js/americanize.js"});
+    chrome.tabs.executeScript(null, {"file": "./js/wordGifSoundAwesomeizer.js"});
 
 });
