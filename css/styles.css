@@ -1,0 +1,29 @@
+.awesome-span-that-loves-activating-stuff {
+	
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+	-webkit-animation-name: usa-usa-usa;
+    -webkit-animation-duration: 2s;
+
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+	animation-name: usa-usa-usa;
+    animation-duration: 2s;
+}
+
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes usa-usa-usa {
+    0%   {color: red;}
+    33%  {color: #ccc;}
+    66%  {color: blue;}
+    100% {color: red;}
+}
+
+/* Chrome, Safari, Opera */
+@keyframes usa-usa-usa {
+    0%   {color: red;}
+    33%  {color: #ccc;}
+    66%  {color: blue;}
+    100% {color: red;}
+}

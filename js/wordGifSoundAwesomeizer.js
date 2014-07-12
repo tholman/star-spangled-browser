@@ -1,40 +1,33 @@
-//WIP!
-
-// http://stackoverflow.com/questions/1774846/how-to-search-replace-text-with-an-a-href-wrapper-in-javascript
-
-
-
-
 var wordGifSoundAwesomeizer = (function() {
 
   'use strict';
-  var body;
-  var container;
+  var body, container;
+  var audio;
 
+  var cursorImage = chrome.extension.getURL( './assets/cursor.png' );
   var gifLocations   = './assets/gif/';
   var soundLocations = './assets/mp3/';
-
   var partying = false;
 
 
   var gifSets = {
     'american': [
-      // 'hidden-gun.gif',
-      chrome.extension.getURL("./assets/gif/hidden-gun.gif"),
-      chrome.extension.getURL("./assets/gif/hulk-hogan.gif"),
-      chrome.extension.getURL("./assets/gif/freedom.gif"),
-      chrome.extension.getURL("./assets/gif/guns.gif")
-      // 'hulk-hogan.gif',
-      // 'freedom.gif',
-      // 'guns.gif'
+      'holy-amazing.gif',
+      'hulk-hogan.gif',
+      'freedom.gif',
+      'usa-usa.gif',
+      'guns.gif',
+      'nyan.gif'
     ]
   }
 
   var soundSets = {
     'american': [
-      'highway-to-the-dangerzone.mp3',
       'star-spangled-banner.mp3',
-      'born-in-the-usa.mp3'
+      'red-tailed-hawk.mp3',
+      'danger-zone.mp3',
+      'born-usa.mp3',
+      'america.mp3'
     ]
   }
 
@@ -42,7 +35,7 @@ var wordGifSoundAwesomeizer = (function() {
   // sets, and then be randomized between each hover. 
   // -- Words should be all lower case!
 
-  // Seriously though, go easy on these, lots of document scanning involved!
+  // Seriously though, go easy on these, lots of document scanning involved for each one!
   var wordAssignments = {
     'american': [ 'american', 'america', 'u.s.a' ]
   }
@@ -82,9 +75,23 @@ var wordGifSoundAwesomeizer = (function() {
       var wordSet = wordAssignments[ key ];
       var wordCount = wordSet.length;
 
+      // Assign gif urls
+      var gifSet = gifSets[ key ];
+      for( var i = 0; i < gifSet.length; i++ ) {
+        gifSets[key][i] = chrome.extension.getURL( gifLocations + gifSets[key][i] );
+      }
+
+      // Asign mp3 urls
+      var soundSet = soundSets[ key ];
+      for( var i = 0; i < soundSet.length; i++ ) {
+        soundSets[key][i] = chrome.extension.getURL( soundLocations + soundSets[key][i] );
+      }
+
       // Scan through each individual word, in the word set.
       for( var j = 0; j < wordCount; j++ ) {
         var word = wordSet[j];
+      // 
+
         findAndAssign( body, word, key );
       }         
     }
@@ -127,7 +134,8 @@ var wordGifSoundAwesomeizer = (function() {
     node.splitText( index + displacement );
     var span = document.createElement( 'span' );
     span.appendChild( node.splitText( index ) );
-    span.style.backgroundColor = '#ff0000';
+    span.style.cursor = 'url(' + cursorImage + ') 5 5, auto';
+    span.className = "awesome-span-that-loves-activating-stuff";
     node.parentNode.insertBefore( span, node.nextSibling );
     track( span, wordKey );
   }
@@ -137,11 +145,11 @@ var wordGifSoundAwesomeizer = (function() {
 
     // Let the fun begin
     element.addEventListener( 'mouseover',    function() { getThisPartyStarted( wordKey ); }, false );
-    element.addEventListener( 'mouseout',     function() { sadlyStopPartying(); }, false );
+    element.addEventListener( 'mouseout',     function( event ) { sadlyStopPartying( event ); }, false );
   }
 
   // Create and cache the gif container.
-  function createContainer() {
+  function createElements() {
 
     var containerProperties = {
       'backgroundPosition': '50% 50%',
@@ -160,26 +168,45 @@ var wordGifSoundAwesomeizer = (function() {
     container = document.createElement( 'div' );
     applyProperties( container, containerProperties );
     body.appendChild( container );
+
+    audio = document.createElement( 'audio' );
+    audio.loop = true;
+    audio.autoplay = true;
   }
 
   // Add the background to the container, and the container to the page!
   function getThisPartyStarted( key ) {
 
+    console.log( 'enter' );
     if( partying === false ) {
       
+      // Gifs
       var set = gifSets[ key ];
       var gif = set[ Math.floor( Math.random() * set.length ) ]; // Random gif from set!
       container.style[ 'backgroundImage' ] = 'url(' + gif + ')';
       container.style[ 'display' ] = 'block';
+
+      // Audio
+      var soundSet = soundSets[ key ];
+      var mp3 = soundSet[ Math.floor( Math.random() * soundSet.length ) ]; // Random gif from set!
+      audio.setAttribute( 'src', mp3 );
+
       partying = true;
     }
   }
 
 
   // Hide the container
-  function sadlyStopPartying() {
+  function sadlyStopPartying( event ) {
+
+    // Don't stop the music, nobody can stop the music.
+    if( event.toElement.className === 'awesome-span-that-loves-activating-stuff' ){
+      return;
+    }
+
     container.style[ 'backgroundImage' ] = '';
     container.style[ 'display' ] = 'none';
+    audio.setAttribute( 'src', '' );
     partying = false;
   }
 
@@ -188,7 +215,7 @@ var wordGifSoundAwesomeizer = (function() {
 
     // Caching & init
     body = document.body;
-    createContainer();
+    createElements();
     init();
   }
 
