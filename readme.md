@@ -12,6 +12,12 @@ Insructions will go here, uncluding how to create new chrome extensions.
 
 Expliation with JS emamples. And examples of asset folders.
 
+#### Packaging
+
+If you have customized this repository, you will need to zip this folder up to submit to the chrome web site. Be sure **not** to include the demo folder, as it is just to show the extension in action, and isn't actually part of it.
+
+You will also need to change the name in the manifest, to something new.
+
 ### License
 
 The MIT License (MIT)

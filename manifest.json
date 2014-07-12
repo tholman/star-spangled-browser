@@ -13,6 +13,13 @@
     "tabs"
   ],
 
+  "content_scripts": [
+    {
+      "matches": [ "https://*/*", "http://*/*" ],
+      "css": [ "./css/styles.css" ]
+    }
+  ],
+
  "web_accessible_resources": [
     "assets/*",
     "css/*"
@@ -20,6 +27,6 @@
 
   "background": {
     "scripts": [ "./js/init.js" ],
-    "persistent": false
+    "persistent": true
   }
 }

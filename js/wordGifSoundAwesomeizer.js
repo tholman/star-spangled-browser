@@ -1,14 +1,23 @@
+
+console.log( "injected?" );
+if ( wordGifSoundAwesomeizer ) {
+
+  // Don't create 100 of these!
+  wordGifSoundAwesomeizer.init();
+  console.log( "initted!" );
+} else {
+
+console.log( "created!" );
 var wordGifSoundAwesomeizer = (function() {
 
   'use strict';
   var body, container;
   var audio;
 
-  var cursorImage = chrome.extension.getURL( './assets/cursor.png' );
-  var gifLocations   = './assets/gif/';
-  var soundLocations = './assets/mp3/';
+  var cursorImage = chrome.extension.getURL( '/assets/cursor.png' );
+  var gifLocations   = '/assets/gif/';
+  var soundLocations = '/assets/mp3/';
   var partying = false;
-
 
   var gifSets = {
     'american': [
@@ -36,6 +45,7 @@ var wordGifSoundAwesomeizer = (function() {
   // -- Words should be all lower case!
 
   // Seriously though, go easy on these, lots of document scanning involved for each one!
+  // Also, put longer words before shorter ones (ie: american before america );
   var wordAssignments = {
     'american': [ 'american', 'america', 'u.s.a' ]
   }
@@ -75,6 +85,21 @@ var wordGifSoundAwesomeizer = (function() {
       var wordSet = wordAssignments[ key ];
       var wordCount = wordSet.length;
 
+      // Scan through each individual word, in the word set.
+      for( var j = 0; j < wordCount; j++ ) {
+        var word = wordSet[j];
+
+        findAndAssign( body, word, key );
+      }         
+    }
+  }
+
+  function assignLinks() {
+
+    for ( var key in wordAssignments ) {
+      var wordSet = wordAssignments[ key ];
+      var wordCount = wordSet.length;
+
       // Assign gif urls
       var gifSet = gifSets[ key ];
       for( var i = 0; i < gifSet.length; i++ ) {
@@ -86,14 +111,6 @@ var wordGifSoundAwesomeizer = (function() {
       for( var i = 0; i < soundSet.length; i++ ) {
         soundSets[key][i] = chrome.extension.getURL( soundLocations + soundSets[key][i] );
       }
-
-      // Scan through each individual word, in the word set.
-      for( var j = 0; j < wordCount; j++ ) {
-        var word = wordSet[j];
-      // 
-
-        findAndAssign( body, word, key );
-      }         
     }
   }
 
@@ -114,7 +131,7 @@ var wordGifSoundAwesomeizer = (function() {
       
       var child = element.childNodes[i - 1];
 
-      if ( child.nodeType === 1 ) { // We must go deeper!
+      if ( child.nodeType === 1 && child.className !== 'awesome-span-that-loves-activating-stuff' ) { // We must go deeper!
         findAndAssign( child, word, wordKey );
       } else if ( child.nodeType === 3 ) { // Hot dog, a text node!
         var index = child.data.length;
@@ -136,6 +153,7 @@ var wordGifSoundAwesomeizer = (function() {
     span.appendChild( node.splitText( index ) );
     span.style.cursor = 'url(' + cursorImage + ') 5 5, auto';
     span.className = "awesome-span-that-loves-activating-stuff";
+
     node.parentNode.insertBefore( span, node.nextSibling );
     track( span, wordKey );
   }
@@ -199,6 +217,7 @@ var wordGifSoundAwesomeizer = (function() {
   // Hide the container
   function sadlyStopPartying( event ) {
 
+    console.log( "stop", event.toElement.className );
     // Don't stop the music, nobody can stop the music.
     if( event.toElement.className === 'awesome-span-that-loves-activating-stuff' ){
       return;
@@ -216,13 +235,16 @@ var wordGifSoundAwesomeizer = (function() {
     // Caching & init
     body = document.body;
     createElements();
+    assignLinks();
     init();
   }
 
   return extend( main, {
-      
+    init: init
   });
 
 })();
 
 wordGifSoundAwesomeizer();
+
+}

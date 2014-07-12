@@ -10,5 +10,5 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab){
     }
 
     chrome.tabs.executeScript( null, {"file" : "./js/wordGifSoundAwesomeizer.js"});
-    chrome.tabs.insertCSS(     null, {"file" : "./css/styles.css" });
+    // chrome.tabs.insertCSS(     null, {"file" : "./css/styles.css" });
 });
