@@ -147,8 +147,8 @@ var wordGifSoundAwesomeizer = (function() {
       'backgroundPosition': '50% 50%',
       'backgroundSize': 'cover',
       'pointerEvents': 'none',
+      'zIndex': '2147483647', // Take it to the max!
       'position': 'fixed',
-      'zIndex': '999999',
       'display': 'none',
       'height': '100%',
       'width': '100%',
@@ -178,8 +178,8 @@ var wordGifSoundAwesomeizer = (function() {
 
   // Hide the container
   function sadlyStopPartying() {
-    container.style[ 'display' ] = 'none';
     container.style[ 'backgroundImage' ] = '';
+    container.style[ 'display' ] = 'none';
     partying = false;
   }
 
