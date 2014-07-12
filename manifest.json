@@ -9,7 +9,12 @@
   "permissions": [
     "https://*/*",
     "http://*/*",
+    "http://localhost/*",
     "tabs"
+  ],
+
+ "web_accessible_resources": [
+    "assets/*"
   ],
 
   "background": {

@@ -1,4 +1,4 @@
-
+//WIP!
 
 // http://stackoverflow.com/questions/1774846/how-to-search-replace-text-with-an-a-href-wrapper-in-javascript
 
@@ -14,29 +14,37 @@ var wordGifSoundAwesomeizer = (function() {
   var gifLocations   = './assets/gif/';
   var soundLocations = './assets/mp3/';
 
+  var partying = false;
+
 
   var gifSets = {
-  	'american': [
-  		'hidden-gun.gif',
-  		'hulk-hogan.gif',
-  		'freedom.gif',
-  		'guns.gif'
-  	]
+    'american': [
+      // 'hidden-gun.gif',
+      chrome.extension.getURL("./assets/gif/hidden-gun.gif"),
+      chrome.extension.getURL("./assets/gif/hulk-hogan.gif"),
+      chrome.extension.getURL("./assets/gif/freedom.gif"),
+      chrome.extension.getURL("./assets/gif/guns.gif")
+      // 'hulk-hogan.gif',
+      // 'freedom.gif',
+      // 'guns.gif'
+    ]
   }
 
   var soundSets = {
-  	'american': [
-  		'highway-to-the-dangerzone.mp3',
-  		'star-spangled-banner.mp3',
-  		'born-in-the-usa.mp3'
-  	]
+    'american': [
+      'highway-to-the-dangerzone.mp3',
+      'star-spangled-banner.mp3',
+      'born-in-the-usa.mp3'
+    ]
   }
 
   // Each word in the words set here, will assign actions to given gif & sound
   // sets, and then be randomized between each hover. 
   // -- Words should be all lower case!
+
+  // Seriously though, go easy on these, lots of document scanning involved!
   var wordAssignments = {
-  	'american': [ 'america', 'american', 'freedom' ]
+    'american': [ 'american', 'america', 'u.s.a' ]
   }
     
   /* -------------------------
@@ -70,38 +78,66 @@ var wordGifSoundAwesomeizer = (function() {
   // Initialize
   function init() {
 
-  	var substring= 'australi';
-	findPlainText(document.body, substring, function(node, index) {
-	    node.splitText(index+substring.length);
-	    var span= document.createElement('span');
-	    span.appendChild(node.splitText(index));
-	    node.parentNode.insertBefore(span, node.nextSibling);
-	});
+    for ( var key in wordAssignments ) {
+      var wordSet = wordAssignments[ key ];
+      var wordCount = wordSet.length;
+
+      // Scan through each individual word, in the word set.
+      for( var j = 0; j < wordCount; j++ ) {
+        var word = wordSet[j];
+        findAndAssign( body, word, key );
+      }         
+    }
   }
 
-function findPlainText(element, substring, callback) {
-    for (var childi= element.childNodes.length; childi-->0;) {
-        var child= element.childNodes[childi];
-        if (child.nodeType===1) {
-            findPlainText(child, substring, callback);
-        } else if (child.nodeType===3) {
-            var index = child.data.length;
-            while (true) {
-                index = child.data.toLowerCase().lastIndexOf(substring, index);
-                if (index===-1)
-                    break;
-                callback.call(window, child, index)
-            }
+  function findAndAssign( element, word, wordKey ) {
+
+    // For each child of the parent
+    // -> If the child is a text node
+    // -> -> Go through the child, and mark every index (of!) every keyword
+    // -> -> -> Wrap a span around this word, and start tracking said span.
+    // -> Else~If the child is not a text node.
+    // -> -> Get recursive on this bad boy.
+
+    // Node types being used:
+    // 1: Element Node
+    // 3: Text Node 
+
+    for ( var i = element.childNodes.length; i > 0; i-- ) {
+      
+      var child = element.childNodes[i - 1];
+
+      if ( child.nodeType === 1 ) { // We must go deeper!
+        findAndAssign( child, word, wordKey );
+      } else if ( child.nodeType === 3 ) { // Hot dog, a text node!
+        var index = child.data.length;
+        while ( true ) {
+          index = child.data.toLowerCase().lastIndexOf( word, index );
+          if ( index === -1 ) {
+            break;
+          }
+          applySpan( child, index, word.length, wordKey );
         }
+      }
     }
-}
+  }
+
+  function applySpan( node, index, displacement, wordKey ) {
+    
+    node.splitText( index + displacement );
+    var span = document.createElement( 'span' );
+    span.appendChild( node.splitText( index ) );
+    span.style.backgroundColor = '#ff0000';
+    node.parentNode.insertBefore( span, node.nextSibling );
+    track( span, wordKey );
+  }
 
   // Start tracking mouse hovers
-  function track( element ) {
+  function track( element, wordKey ) {
 
     // Let the fun begin
-    element.addEventListener( 'mouseover',    function() { startLovingAmerica(); }, false );
-    element.addEventListener( 'mouseout',     function() { sadlyStopPartying();   }, false );
+    element.addEventListener( 'mouseover',    function() { getThisPartyStarted( wordKey ); }, false );
+    element.addEventListener( 'mouseout',     function() { sadlyStopPartying(); }, false );
   }
 
   // Create and cache the gif container.
@@ -127,13 +163,24 @@ function findPlainText(element, substring, callback) {
   }
 
   // Add the background to the container, and the container to the page!
-  function startLovingAmerica() {
+  function getThisPartyStarted( key ) {
+
+    if( partying === false ) {
+      
+      var set = gifSets[ key ];
+      var gif = set[ Math.floor( Math.random() * set.length ) ]; // Random gif from set!
+      container.style[ 'backgroundImage' ] = 'url(' + gif + ')';
+      container.style[ 'display' ] = 'block';
+      partying = true;
+    }
   }
+
 
   // Hide the container
   function sadlyStopPartying() {
     container.style[ 'display' ] = 'none';
     container.style[ 'backgroundImage' ] = '';
+    partying = false;
   }
 
 
