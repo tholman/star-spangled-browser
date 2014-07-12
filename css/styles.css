@@ -1,3 +1,8 @@
+/*
+ *  Star Spangled Browser
+ *  - CSS only needs to support chome ( its a chrome extension )
+ */
+
 .awesome-span-that-loves-activating-stuff {
 	
     -webkit-animation-iteration-count: infinite;
@@ -11,8 +16,6 @@
     animation-duration: 2s;
 }
 
-
-/* Chrome, Safari, Opera */
 @-webkit-keyframes usa-usa-usa {
     0%   {color: red;}
     33%  {color: #ccc;}
@@ -20,7 +23,6 @@
     100% {color: red;}
 }
 
-/* Chrome, Safari, Opera */
 @keyframes usa-usa-usa {
     0%   {color: red;}
     33%  {color: #ccc;}

@@ -1,6 +1,6 @@
 /* 
  *  Star Spangled Browser
- *  - Initializer, injects the Americanizer script on new pages
+ *  - Initializer, injects the wordGifSoundAwesomeizer js & css on the new page.
  */
 
 chrome.tabs.onUpdated.addListener(function(id, info, tab){
