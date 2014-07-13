@@ -32,7 +32,7 @@ var gifSets = {
 // These words, will activate gifs in the design set.
 var wordAssignments = {
   'design': [ 'almost flat design', 'flat design', 'skeuomorphism' ]
-  }
+}
 ```
 
 #### Packaging
