@@ -42,6 +42,12 @@ You will also need to change the name and icons in the manifest file. There is a
 
 ### License
 
+#### Code
+
 The MIT License (MIT)
 
 Copyright (C) 2014 ~ [Tim Holman](http://tholman.com) ~ timothy.w.holman@gmail.com
+
+#### Assets
+
+Music Samples & Gifs, owned by their respective creators.
