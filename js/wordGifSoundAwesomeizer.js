@@ -240,6 +240,6 @@ var wordGifSoundAwesomeizer = (function() {
 
 })();
 
-// wordGifSoundAwesomeizer();
+wordGifSoundAwesomeizer();
 
 }
