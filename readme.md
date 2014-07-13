@@ -6,17 +6,16 @@ Just add it to chrome through the chrome web store [here](https://chrome.google.
  
 ### Instructions
 
-Insructions will go here, uncluding how to create new chrome extensions.
+The app itself, is just installed through the [chrome extension store](https://chrome.google.com/webstore/detail/star-spangled-browser/nmhhaohjnbippbdhfemgeiooacflcphi) ... The code itself though is built to be widely customizable in terms of word assignments, gifs and sounds.
 
 #### Customization
 
-Expliation with JS emamples. And examples of asset folders.
+Customization is fairly easy, and is done in the 
 
 #### Packaging
 
-If you have customized this repository, you will need to zip this folder up to submit to the chrome web site. Be sure **not** to include the demo folder, as it is just to show the extension in action, and isn't actually part of it.
-
-You will also need to change the name in the manifest, to something new.
+If you have customized this repository, you will need to zip everything in this folder to submit to the chrome web store.
+You will also need to change the name and icons in the manifest file. There is a deltailed explination [here](https://developer.chrome.com/webstore/publish).
 
 ### License
 
