@@ -38,7 +38,7 @@ var wordAssignments = {
 #### Packaging
 
 If you have customized this repository, you will need to zip everything in this folder to submit to the chrome web store.
-You will also need to change the name and icons in the manifest file. There is a deltailed explination [here](https://developer.chrome.com/webstore/publish).
+You will also need to change the name and icons in the manifest file. There is a detailed explanation [here](https://developer.chrome.com/webstore/publish).
 
 ### License
 
