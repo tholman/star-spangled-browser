@@ -5,11 +5,14 @@
   "description": "The word America has never been so fun.",
   "version": "1.0",
 
-  // All urls, & tabs
+  "icons": { 
+    "48":  "./icons/48.png",
+    "128": "./icons/128.png"
+  },
+
   "permissions": [
     "https://*/*",
     "http://*/*",
-    "http://localhost/*",
     "tabs"
   ],
 
