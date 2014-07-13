@@ -3,7 +3,7 @@
 
   "name": "Star Spangled Browser",
   "description": "The word America has never been so fun.",
-  "version": "1.0",
+  "version": "1.0.1",
 
   "icons": { 
     "48":  "./assets/icons/48.png",
