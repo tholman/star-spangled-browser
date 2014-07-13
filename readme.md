@@ -1,12 +1,13 @@
 # Star Spangled Browser
 
-Are you American? Do you know an American? Do you know of America? If your answer is yes to any of these questions, then this chrome extension is for you!
+Are you American? Do you know an American? Do you know of America?
+If your answer is yes to any of these questions, then this chrome extension is for you!
 
-Just add it to chrome through the chrome web store [here](https://chrome.google.com/webstore/detail/star-spangled-browser/nmhhaohjnbippbdhfemgeiooacflcphi), and you'll never have to hover the word "america" again, without feeling a full blast of American American'ness.
+Just add star spangled browser to chrome through the chrome web store [here](https://chrome.google.com/webstore/detail/star-spangled-browser/nmhhaohjnbippbdhfemgeiooacflcphi), and you'll never have to hover the word "america" again without feeling a full blast of American American'ness.
  
 ### Instructions
 
-The app itself, is just installed freely through the [chrome web store](https://chrome.google.com/webstore/detail/star-spangled-browser/nmhhaohjnbippbdhfemgeiooacflcphi) ... The code itself though is built to be widely customizable in terms of word assignments, gifs and sounds.
+The app itself, is just installed freely through the [chrome web store](https://chrome.google.com/webstore/detail/star-spangled-browser/nmhhaohjnbippbdhfemgeiooacflcphi) ... The code itself is built to be widely customizable in terms of word assignments, gifs and sounds.
 
 If you are customizing, you can load the app as an unpackaged extension for easy editing.
 
