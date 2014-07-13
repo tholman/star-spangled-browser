@@ -6,8 +6,8 @@
   "version": "1.0",
 
   "icons": { 
-    "48":  "./icons/48.png",
-    "128": "./icons/128.png"
+    "48":  "./assets/icons/48.png",
+    "128": "./assets/icons/128.png"
   },
 
   "permissions": [
