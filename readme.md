@@ -6,11 +6,33 @@ Just add it to chrome through the chrome web store [here](https://chrome.google.
  
 ### Instructions
 
-The app itself, is just installed through the [chrome extension store](https://chrome.google.com/webstore/detail/star-spangled-browser/nmhhaohjnbippbdhfemgeiooacflcphi) ... The code itself though is built to be widely customizable in terms of word assignments, gifs and sounds.
+The app itself, is just installed freely through the [chrome web store](https://chrome.google.com/webstore/detail/star-spangled-browser/nmhhaohjnbippbdhfemgeiooacflcphi) ... The code itself though is built to be widely customizable in terms of word assignments, gifs and sounds.
+
+If you are customizing, you can load the app as an unpackaged extension for easy editing.
 
 #### Customization
 
-Customization is fairly easy, and is done in the 
+Customization is fairly easy, and is done in the `wordGifSoundAwesomeizer` file.
+
+New assets go into the `assets` folder, within the `gif` and `mp3` directories respectively.
+
+The `gifSets` and `soundSets` object, is where specific gifs are assigned to a key. The `wordAssignment` object assigns that key to the words you wish to activate the gifs and sounds.
+
+For example:
+
+```javascript
+// Assign the beating dead horse gif to the 'design' set.
+var gifSets = {
+  'design': [
+    'beating-dead-horse.gif'
+  ]
+}
+
+// These words, will activate gifs in the design set.
+var wordAssignments = {
+  'design': [ 'almost flat design', 'flat design', 'skeuomorphism' ]
+  }
+```
 
 #### Packaging
 
