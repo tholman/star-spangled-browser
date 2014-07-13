@@ -1,9 +1,11 @@
 * {
+	-webkit-font-smoothing: antialiased;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 html, body {
+	cursor: url('../img/cursor.png') 5 5, auto;
 	padding: 0px;
 	margin: 0px;
 	min-height: 100%;
@@ -14,4 +16,107 @@ body {
 	background: url( '../img/background.gif' );
 	background-position: 50% 50%;
 	background-size: cover;
+}
+
+article {
+	margin-top: -40px;
+	width: 900px;
+	height: 360px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 40px;
+	text-shadow: -1px -1px 1px rgba(0,0,0,0.5);
+	text-align: center;
+	color: #fff;
+	-webkit-transform: translate3d(-50%,-50%, 0px);
+	-moz-transform: translate3d(-50%,-50%, 0px);
+	-ms-transform: translate3d(-50%,-50%, 0px);
+	transform: translate3d(-50%,-50%, 0px);
+	letter-spacing: 0.2px;
+}
+
+h1 {
+	font-family: 'Codystar', cursive;
+	font-size: 65px;
+	letter-spacing: 4px;
+	margin-top: 0px;
+}
+
+p, footer {
+	font-size: 22px;
+	font-family: impact;
+	line-height: 31px;
+	margin-top: -22px;
+	letter-spacing: 0.2px;
+}
+
+footer {
+	margin-top: 35px;
+	font-size: 18px;
+}
+
+footer a, footer iframe {
+	margin-right: 10px;
+	margin-left: 10px;
+	color: #fff;
+}
+
+footer iframe {
+	margin-bottom: -1px;
+}
+
+.second-wicked-paragraph {
+	margin-top: 30px;
+}
+
+.github-link {
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	right: 0;
+	border: 0;
+}
+
+
+p a {
+
+	text-decoration: none;
+	
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+	-webkit-animation-name: usa-usa-usa;
+    -webkit-animation-duration: 2s;
+
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+	-moz-animation-name: usa-usa-usa;
+    -moz-animation-duration: 2s;
+
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+	animation-name: usa-usa-usa;
+    animation-duration: 2s;
+}
+
+@-webkit-keyframes usa-usa-usa {
+    0%   {color: red;}
+    33%  {color: #ccc;}
+    66%  {color: blue;}
+    100% {color: red;}
+}
+
+@-moz-keyframes usa-usa-usa {
+    0%   {color: red;}
+    33%  {color: #ccc;}
+    66%  {color: blue;}
+    100% {color: red;}
+}
+
+
+@keyframes usa-usa-usa {
+    0%   {color: red;}
+    33%  {color: #ccc;}
+    66%  {color: blue;}
+    100% {color: red;}
 }

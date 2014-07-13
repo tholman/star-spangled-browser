@@ -1,13 +1,7 @@
-
-console.log( "injected?" );
 if ( wordGifSoundAwesomeizer ) {
-
-  // Don't create 100 of these!
   wordGifSoundAwesomeizer.init();
-  console.log( "initted!" );
 } else {
 
-console.log( "created!" );
 var wordGifSoundAwesomeizer = (function() {
 
   'use strict';
@@ -190,6 +184,7 @@ var wordGifSoundAwesomeizer = (function() {
     audio = document.createElement( 'audio' );
     audio.loop = true;
     audio.autoplay = true;
+    audio.setAttribute( 'src', '' );
   }
 
   // Add the background to the container, and the container to the page!
@@ -245,6 +240,6 @@ var wordGifSoundAwesomeizer = (function() {
 
 })();
 
-wordGifSoundAwesomeizer();
+// wordGifSoundAwesomeizer();
 
 }
